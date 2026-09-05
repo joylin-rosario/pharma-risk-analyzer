@@ -29,6 +29,14 @@ reproduces the same 320 rows unless you edit the script. Poor-supplier rows are
 deliberately biased toward more delays/damage/missing docs so the risk
 distribution includes a few genuine "Critical" examples, not just "High".
 
+There is also a `/regen-data` skill
+([.claude/skills/regen-data.md](.claude/skills/regen-data.md)) that runs the
+above and then sanity-checks the output against `risk_engine.validate_columns`
+and the `Risk_Category` distribution — prefer it over the bare command when
+you've just edited `generate_data.py`, since it catches a broken risk
+correlation (e.g. the `Critical` band silently dropping to zero) before you
+notice it in the app.
+
 ## Files
 
 - `app.py` — Streamlit UI: filters, KPI tiles, Plotly charts, flagged-shipment
